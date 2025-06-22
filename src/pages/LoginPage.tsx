@@ -9,6 +9,29 @@ export default function LoginPage() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
+    const handleLogin = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setLoading(true);
+        setError("");
+    
+        // try {
+        //   const res = await fetch("/api/auth/login", {
+        //     method: "POST",
+        //     headers: { "Content-Type": "application/json" },
+        //     body: JSON.stringify({ email, password }),
+        //   });
+    
+        //   const data = await res.json();
+    
+        //   if (!res.ok) throw new Error(data.message || "Login failed");
+    
+        // } catch (err: any) {
+        //   setError(err.message || "Something went wrong.");
+        // } finally {
+        //   setLoading(false);
+        // }
+      };
+
     return (
         <section className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
             <motion.div
@@ -19,7 +42,13 @@ export default function LoginPage() {
             >
                 <h2 className="text-2xl font-bold text-center text-text mb-6">Login to <span className="text-primary">IGReach</span></h2>
 
-                <form className="space-y-5">
+                {error && (
+                    <div className="bg-red-100 text-red-700 text-sm p-3 rounded mb-4">
+                        {error}
+                    </div>
+                )}
+
+                <form onSubmit={handleLogin} className="space-y-5">
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
                         <input

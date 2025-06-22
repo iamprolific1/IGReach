@@ -10,6 +10,33 @@ export default function SignupPage() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
+    const handleSignup = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError("");
+    
+        if (password !== confirm) {
+          return setError("Passwords do not match.");
+        }
+    
+        setLoading(true);
+        // try {
+        //   const res = await fetch("/api/auth/signup", {
+        //     method: "POST",
+        //     headers: { "Content-Type": "application/json" },
+        //     body: JSON.stringify({ email, password }),
+        //   });
+    
+        //   const data = await res.json();
+    
+        //   if (!res.ok) throw new Error(data.message || "Signup failed.");
+    
+        // } catch (err: any) {
+        //   setError(err.message || "Something went wrong.");
+        // } finally {
+        //   setLoading(false);
+        // }
+      };
+
     return (
         <section className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
             <motion.div
@@ -20,7 +47,13 @@ export default function SignupPage() {
             >
                 <h2 className="text-2xl font-bold text-center text-text mb-6">Create an <span className="text-primary">IGReach</span> Account</h2>
 
-                <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
+                {error && (
+                    <div className="bg-red-100 text-red-700 text-sm p-3 rounded mb-4">
+                        {error}
+                    </div>
+                )}
+
+                <form onSubmit={handleSignup} className="space-y-5">
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
                         <input
