@@ -78,7 +78,7 @@ export default function FAQSection() {
                                 {openIndex === index && (
                                     <motion.div
                                         key="content"
-                                        intial={{ height: 0, opacity: 0 }}
+                                        initial={{ height: 0, opacity: 0 }}
                                         animate={{ height: "auto", opacity: 1 }}
                                         exit={{ height: 0, opacity: 0 }}
                                         transition={{ duration: 0.3 }}
